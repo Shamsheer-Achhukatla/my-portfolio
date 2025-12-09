@@ -1,312 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHAMSHEER - AI-Enhanced Full Stack Developer</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SHAMSHEER - NEXT‑GEN Full Stack Developer</title>
     <script src="https://unpkg.com/scrollreveal"></script>
     <style>
-        /* --- GLOBAL STYLES & VARIABLES (UNCHANGED) --- */
         :root {
-            --dark-bg: #0a0a0a; /* Darker than before */
-            --main-text: #E5E5E5;
-            --highlight-color-1: #00bcd4; /* Cyan */
-            --highlight-color-2: #ff4081; /* Pink/Magenta */
-            --card-bg: #151515;
-            --border-glow: 0 0 15px rgba(0, 188, 212, 0.8);
+            --dark-bg: #050505;
+            --main-text: #eaeaea;
+            --highlight1: #00eaff;
+            --highlight2: #ff2b88;
+            --card-bg: #121212;
+            --glass-bg: rgba(255, 255, 255, 0.05);
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
             margin: 0;
-            padding: 0;
-            background-color: var(--dark-bg);
+            background: var(--dark-bg);
             color: var(--main-text);
-            /* Ensure the body is the canvas for the starfield */
-            min-height: 100vh;
+            font-family: "Segoe UI", sans-serif;
+            overflow-x: hidden;
         }
 
-        /* --- 1. STARFIELD BACKGROUND EFFECT --- */
-        /* Keyframes for star movement (subtle parallax) */
-        @keyframes move-star {
+        /* STARFIELD */
+        @keyframes move-stars {
             from { transform: translateY(0); }
-            to { transform: translateY(-2000px); }
+            to { transform: translateY(-3000px); }
         }
-
-        .stars {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /* Place behind all content */
-            pointer-events: none;
-            overflow: hidden;
-            opacity: 0.5; /* Subtle */
-        }
-
-        /* Generate three layers of stars with different sizes, colors, and speeds */
-        .stars-small {
-            width: 1px; height: 1px;
-            background: #fff;
-            box-shadow: 0 0 2px var(--highlight-color-1);
-            animation: move-star 50s linear infinite;
-        }
-        .stars-medium {
-            width: 2px; height: 2px;
-            background: var(--highlight-color-1);
-            box-shadow: 0 0 4px var(--highlight-color-1);
-            animation: move-star 100s linear infinite;
-        }
-        .stars-large {
-            width: 3px; height: 3px;
-            background: var(--highlight-color-2);
-            box-shadow: 0 0 6px var(--highlight-color-2);
-            animation: move-star 150s linear infinite;
-        }
-        
-        /* JavaScript will insert the actual star elements */
+        .stars { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+        .star { position: absolute; border-radius: 50%; opacity: 0.7; }
+        .s1 { width: 1px; height: 1px; background: var(--highlight1); animation: move-stars 55s linear infinite; }
+        .s2 { width: 2px; height: 2px; background: #fff; animation: move-stars 95s linear infinite; }
+        .s3 { width: 3px; height: 3px; background: var(--highlight2); animation: move-stars 140s linear infinite; }
 
         .container {
             max-width: 1000px;
             margin: 40px auto;
-            padding: 20px;
-            background: rgba(10, 10, 10, 0.95);
-            box-shadow: 0 10px 40px rgba(255, 64, 129, 0.15); /* Stronger overall shadow */
-            border-radius: 15px;
-            animation: fadeIn 1s ease-out;
-            position: relative; /* Context for nested effects */
+            padding: 30px;
+            background: var(--glass-bg);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.1);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- HEADER & PROFILE (ENHANCED) --- */
         header {
             display: flex;
-            align-items: center;
-            padding-bottom: 25px;
-            margin-bottom: 25px;
-            border-bottom: 2px solid;
-            border-image: linear-gradient(to right, var(--highlight-color-1), var(--highlight-color-2)) 1;
+            gap: 20px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--highlight1);
         }
-
         header img {
-            /* ... existing styles ... */
-            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Bouncier transition */
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--highlight2);
+            transition: 0.4s;
         }
         header img:hover {
-            transform: scale(1.1) rotate(5deg); /* More aggressive hover */
-            box-shadow: 0 0 30px rgba(255, 64, 129, 1);
+            transform: scale(1.12) rotate(5deg);
+            box-shadow: 0 0 35px var(--highlight1);
         }
 
         h1 {
-            /* ... existing styles ... */
-            animation: pulseText 3s infinite alternate; /* Subtle pulsing effect */
+            font-size: 2.5rem;
+            margin: 0;
+            color: var(--highlight2);
+            text-shadow: 0 0 10px var(--highlight2);
         }
 
-        @keyframes pulseText {
-            from { text-shadow: 0 0 5px rgba(255, 64, 129, 0.5); }
-            to { text-shadow: 0 0 15px rgba(255, 64, 129, 1); }
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--highlight1);
         }
 
-        /* --- SKILLS/EXPERTISE (ENHANCED) --- */
+        a { color: var(--highlight1); text-decoration: none; }
+        a:hover { color: var(--highlight2); }
+
+        h2 {
+            color: var(--highlight1);
+            text-shadow: 0 0 8px var(--highlight1);
+        }
+
+        .expertise ul { list-style: none; padding: 0; }
         .expertise li {
-            /* ... existing styles ... */
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: var(--card-bg);
+            padding: 12px;
+            border-radius: 10px;
+            margin: 10px 0;
+            transition: 0.4s;
         }
         .expertise li:hover {
-            background-color: rgba(0, 188, 212, 0.2);
-            transform: scale(1.1) rotateX(10deg); /* 3D tilt effect on hover */
-            box-shadow: 0 0 20px var(--highlight-color-1);
+            transform: scale(1.05) translateX(10px);
+            box-shadow: 0 0 20px var(--highlight1);
         }
 
-        /* --- PROJECTS (ENHANCED) --- */
         .project {
-            /* ... existing styles ... */
-            perspective: 1000px; /* Needed for the 3D hover on card */
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            transition: 0.4s;
+            border: 1px solid transparent;
         }
-        
-        /* 3D Rotate on Hover for the Project Card */
         .project:hover {
-            border-color: var(--highlight-color-1);
-            box-shadow: 0 0 35px rgba(0, 188, 212, 0.5);
-            transform: rotateY(2deg) scale(1.02); /* Slight 3D rotation and scale */
+            transform: scale(1.03) rotateY(3deg);
+            border: 1px solid var(--highlight1);
+            box-shadow: 0 0 25px var(--highlight1);
         }
 
-        .project a {
-            /* ... existing styles ... */
-            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card-bg);
         }
-        .project a:hover {
-            background: var(--highlight-color-1);
-            transform: scale(1.1) translateY(-3px); /* Button pops out */
-            box-shadow: 0 4px 15px rgba(255, 64, 129, 0.8);
+        table th, table td {
+            border: 1px solid var(--highlight1);
+            padding: 10px;
+            text-align: center;
         }
 
-        /* --- CONTACT FORM (ENHANCED) --- */
         fieldset {
-            /* ... existing styles ... */
-            animation: glowBorder 1.5s infinite alternate; /* Pulsing fieldset border */
+            border: 2px solid var(--highlight2);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px var(--highlight2);
         }
 
-        @keyframes glowBorder {
-            from { box-shadow: 0 0 10px rgba(0, 188, 212, 0.6); }
-            to { box-shadow: 0 0 20px rgba(255, 64, 129, 0.8); }
+        input, textarea {
+            width: 100%;
+            margin: 8px 0;
+            padding: 10px;
+            border-radius: 10px;
+            background: #1a1a1a;
+            color: #fff;
+            border: 1px solid var(--highlight1);
         }
 
-        /* Hide the original HR lines as the container border is sufficient */
-        hr {
-            display: none;
+        input[type="submit"] {
+            background: var(--highlight1);
+            color: #000;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
         }
-
+        input[type="submit"]:hover {
+            background: var(--highlight2);
+            color: #fff;
+        }
     </style>
 </head>
-
 <body>
     <div class="stars"></div>
+
     <div class="container">
         <header class="scroll-reveal-item">
-            <img src="profile.png" alt="Profile image of Shamsheer" width="150" height="150">
+            <img src="profile.png" width="150" height="150" />
             <div>
                 <h1>SHAMSHEER</h1>
-                <p class="subtitle">Full Stack Developer | MERN Stack Enthusiast</p>
-                <p class="contact-info">
-                    <a href="mailto:achhukatlashamsheer@gmail.com">📩 Email</a>
-                    <a href="callto:7780709073">📞 Phone</a>
-                    <a href="https://www.linkedin.com/in/nithin-gottiparthi-0b1b1a1b2/" target="_blank">🔗 LinkedIn</a>
-                    <a href="https://www.github.com/nithin-gottiparthi" target="_blank">💻 GitHub</a>
+                <p class="subtitle">AI‑Enhanced Full Stack Developer</p>
+                <p>
+                    <a href="mailto:achhukatlashamsheer@gmail.com">Email</a> |
+                    <a href="callto:7780709073">Phone</a> |
+                    <a href="#">LinkedIn</a> |
+                    <a href="#">GitHub</a>
                 </p>
             </div>
         </header>
 
-        <div class="summary scroll-reveal-item">
-            <h2>🎯 Professional Summary</h2>
+        <section class="scroll-reveal-item">
+            <h2>🚀 Professional Summary</h2>
             <p>
-                Highly motivated B.Tech student and aspiring **Elite Full Stack Developer** with a passion for web technologies and building scalable applications. Experienced in developing responsive user interfaces (HTML/CSS/JavaScript) and managing data with backend technologies (**Node.js/MongoDB**). Currently leveraging a foundation in engineering problem-solving to rapidly learn and apply new development frameworks to create high-impact, feature-rich web solutions.
+                Future‑ready full stack developer blending MERN engineering with emerging AI tools.
+                Focused on building fast, scalable and futuristic web applications.
             </p>
-        </div>
+        </section>
 
-        <div class="expertise scroll-reveal-item">
+        <section class="expertise scroll-reveal-item">
             <h2>💻 Technical Expertise</h2>
             <ul>
-                <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript (ES6+), React.js, Redux, Bootstrap, SASS</li>
-                <li><strong>Backend:</strong> Node.js, Express.js, JWT Authentication, RESTful APIs, Python (Basic)</li>
-                <li><strong>Databases:</strong> MongoDB, MySQL (Basic), Mongoose</li>
-                <li><strong>Tools & DevOps:</strong> Git, GitHub, VS Code, Postman, Heroku/Netlify Deployment</li>
-                <li><strong>Foundation:</strong> CATIA, ANSYS (Demonstrates strong analytical and design thinking)</li>
+                <li><strong>Frontend:</strong> HTML, CSS, JavaScript, React, Redux</li>
+                <li><strong>Backend:</strong> Node.js, Express.js, JWT, REST APIs</li>
+                <li><strong>Databases:</strong> MongoDB, MySQL</li>
+                <li><strong>Tools:</strong> Git, VS Code, Postman</li>
+                <li><strong>Engineering:</strong> CATIA, ANSYS</li>
             </ul>
-        </div>
+        </section>
 
-        <h2>🛠️ Featured Projects</h2>
+        <h2 class="scroll-reveal-item">🛠 Featured Projects</h2>
+
         <div class="project scroll-reveal-item">
-            <h3>1. Full Stack Task Manager Application (MERN)</h3>
-            <p class="tech-stack">**Tech Stack:** React, Node.js, Express.js, MongoDB</p>
-            <ul>
-                <li>**Engineered** a complete **MERN stack** CRUD application for efficient task management with persistent user data.</li>
-                <li>**Implemented** **JWT (JSON Web Token)** based user authentication and authorization for secure access control.</li>
-                <li>**Designed** a dynamic, intuitive interface with React, minimizing load times and optimizing state management for a seamless user experience.</li>
-            </ul>
-            <p><a href="#">View Live Demo</a></p>
+            <h3>1. MERN Task Manager</h3>
+            <p>JWT Auth • React State Optimization • Secure API</p>
+            <a href="#">Demo</a>
         </div>
 
         <div class="project scroll-reveal-item">
-            <h3>2. Portfolio V2.0 (Modernized & Animated)</h3>
-            <p class="tech-stack">**Tech Stack:** HTML5, CSS3 (Flexbox/Grid), JavaScript, GSAP (Planned)</p>
-            <ul>
-                <li>**Developed** a professional, animated portfolio using advanced CSS techniques like **CSS Grid** and **Flexbox** for multi-device responsiveness.</li>
-                <li>**Integrated** modern design patterns including subtle parallax scrolling (effect added via CSS/JS) and smooth page transitions for a premium feel.</li>
-                <li>**Optimized** all assets for fast loading speed, ensuring a 90+ lighthouse performance score.</li>
-            </ul>
-            <p><a href="#">Visit Project</a></p>
+            <h3>2. Animated Portfolio V2</h3>
+            <p>Responsive • Parallax • High Performance UI</p>
+            <a href="#">Visit</a>
         </div>
 
-        <div class="scroll-reveal-item">
+        <section class="scroll-reveal-item">
             <h2>📚 Education</h2>
-            <table border="1">
-                <tr>
-                    <th>Degree/Course</th>
-                    <th>Institution</th>
-                    <th>Year</th>
-                    <th>CGPA/Score</th>
-                </tr>
-                <tr>
-                    <td>B.Tech (Pursuing)</td>
-                    <td>GPREC</td>
-                    <td>2024 - 2027</td>
-                    <td>9.2 CGPA (High Distinction)</td>
-                </tr>
-                <tr>
-                    <td>Diploma in Mechanical Engineering</td>
-                    <td>Govt Polytechnic for Minorities Kurnool</td>
-                    <td>2021 - 2024</td>
-                    <td>7.5 CGPA</td>
-                </tr>
-                <tr>
-                    <td>S.S.C</td>
-                    <td>ZP High School Pathapet Dhone</td>
-                    <td>2020 - 2021</td>
-                    <td>9.5 GPA</td>
-                </tr>
+            <table>
+                <tr><th>Course</th><th>Institute</th><th>Year</th><th>Score</th></tr>
+                <tr><td>B.Tech (Pursuing)</td><td>GPREC</td><td>2024–27</td><td>9.2 CGPA</td></tr>
+                <tr><td>Diploma</td><td>GPM Kurnool</td><td>2021–24</td><td>7.5 CGPA</td></tr>
+                <tr><td>S.S.C</td><td>ZPHS Dhone</td><td>2020–21</td><td>9.5 GPA</td></tr>
             </table>
-        </div>
+        </section>
 
-        <div class="scroll-reveal-item">
+        <section class="scroll-reveal-item">
             <h2>📧 Contact Me</h2>
             <fieldset>
-                <legend>Connect With Shamsheer</legend>
+                <legend>Send a Message</legend>
                 <form action="https://formspree.io/f/xvgaqzbk" method="POST">
-                    <label for="name">Name:</label>
-                    <input type="text" name="name" placeholder="Enter your name" required>
-                    <label for="email">Email:</label>
-                    <input type="email" name="email" placeholder="Enter your email" required>
-                    <label for="message">Message:</label>
-                    <textarea name="message" rows="5" cols="30" placeholder="Enter your message" required></textarea>
-                    <br>
-                    <input type="submit" value="Send Message">
-                    <input type="reset" value="Clear Form">
+                    <input name="name" placeholder="Your Name" required />
+                    <input name="email" type="email" placeholder="Your Email" required />
+                    <textarea name="message" rows="5" placeholder="Message" required></textarea>
+                    <input type="submit" value="Send" />
                 </form>
             </fieldset>
-        </div>
+        </section>
     </div>
 
     <script>
-        // --- 1. STARFIELD GENERATION (Aesthetic effect) ---
-        const starsContainer = document.querySelector('.stars');
-        const numStars = 100;
-
-        function createStars() {
-            for (let i = 0; i < numStars; i++) {
-                const star = document.createElement('div');
-                const size = Math.random();
-                let className = 'stars-small';
-
-                if (size < 0.2) className = 'stars-large';
-                else if (size < 0.6) className = 'stars-medium';
-
-                star.className = `star ${className}`;
-                star.style.left = `${Math.random() * 100}%`;
-                star.style.top = `${Math.random() * 100}%`;
-                star.style.animationDelay = `${Math.random() * 50}s`; // Stagger animation start
-                starsContainer.appendChild(star);
-            }
+        const stars = document.querySelector(".stars");
+        for (let i = 0; i < 150; i++) {
+            const s = document.createElement("div");
+            const size = Math.random();
+            s.className = "star " + (size < 0.33 ? "s1" : size < 0.66 ? "s2" : "s3");
+            s.style.left = Math.random() * 100 + "%";
+            s.style.top = Math.random() * 100 + "%";
+            stars.appendChild(s);
         }
-        createStars();
 
-        // --- 2. SCROLL REVEAL ANIMATION (Killing effect for entrance) ---
-        // This makes elements slide or fade in as they enter the viewport
-        ScrollReveal().reveal('.scroll-reveal-item', {
-            delay: 200, // Wait 200ms
-            distance: '50px', // Slide up 50px
-            origin: 'bottom', // From the bottom
-            easing: 'cubic-bezier(0.5, 0, 0, 1)',
-            interval: 100, // Stagger elements by 100ms
-            duration: 800
+        ScrollReveal().reveal(".scroll-reveal-item",{
+            distance:"60px",
+            duration:900,
+            origin:"bottom",
+            interval:150
         });
-
     </script>
 </body>
 </html>
